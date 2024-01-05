@@ -2,10 +2,11 @@ import whiteLogo from '../images/tinder_logo_white.png';
 import colorLogo from '../images/color-logo-tinder.png';
 
 
-export default function Nav({ minimal, authToken, setShowModal, showModal }) {
+export default function Nav({ minimal, authToken, setShowModal, showModal, setSignUp }) {
 
     const handleClick = () => {
         setShowModal(true);
+        setSignUp(false);
     }
 
     return (

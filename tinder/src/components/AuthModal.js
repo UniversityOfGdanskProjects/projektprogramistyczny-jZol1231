@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 
-export default function AuthModal({ setShowModal }) {
+export default function AuthModal({ setShowModal, isSignUp }) {
 
     const validate = (values) => {
         const errors = {};
@@ -23,8 +23,11 @@ export default function AuthModal({ setShowModal }) {
             passwordConfirm: ''
         },
         validate,
-        onSubmit: (values) => {
-            console.log(values);
+        validateOnChange: false,
+        validateOnBlur: false,
+        onSubmit: (e) => {
+            e.preventDefault();
+            
         }
     });
 
@@ -32,15 +35,14 @@ export default function AuthModal({ setShowModal }) {
         setShowModal(false);
     }
 
-    const isSignUp = true;
-
     return (
         <div className='auth-modal'>
             <div onClick={handleClick} className='close-icon'>X</div>
             <h2>{isSignUp ? 'CREATE ACCOUNT' : 'LOG IN'}</h2>
             <p>By clicking Log In, you agree to our terms. Learn how we process your data in our Privacy Policy.</p>
             <form onSubmit={formik.handleSubmit}>
-                <label name='email'>Email</label><br />
+                <label name='email'>Email</label>
+                {formik.errors.email && <div className='error'>{formik.errors.email}</div>}
                 <input 
                     type='email'
                     name='email'
@@ -49,9 +51,10 @@ export default function AuthModal({ setShowModal }) {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.email}
-                /><br />
-                {formik.errors.email && <div>{formik.errors.email}</div>}
-                <label name='password'>Password</label><br />
+                />
+                <br />
+                <label name='password'>Password</label>
+                {formik.errors.password && <div className='error'>{formik.errors.password}</div>}
                 <input 
                     type='password'
                     name='password'
@@ -61,18 +64,20 @@ export default function AuthModal({ setShowModal }) {
                     onBlur={formik.handleBlur}
                     value={formik.values.password}
                 /><br />
-                {formik.errors.password && <div>{formik.errors.password}</div>}
-                <label name='passwordConfirm'>Confirm your password</label><br />
-                <input 
-                    type='password'
-                    name='passwordConfirm'
-                    id='passwordConfirm'
-                    placeholder='Confirm your password'
-                    value={formik.values.passwordConfirm}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                /><br />
-                {formik.errors.passwordConfirm && <div>{formik.errors.passwordConfirm}</div>}
+                {isSignUp && <>
+                    <label name='passwordConfirm'>Confirm your password</label>
+                    {formik.errors.passwordConfirm && <div className='error'>{formik.errors.passwordConfirm}</div>}                    
+                    <input 
+                        type='password'
+                        name='passwordConfirm'
+                        id='passwordConfirm'
+                        placeholder='Confirm your password'
+                        value={formik.values.passwordConfirm}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                    />
+                </>}
+                <br />
                 <button type='submit' className='secondary-button'>Submit</button>
             </form>
             <hr />
