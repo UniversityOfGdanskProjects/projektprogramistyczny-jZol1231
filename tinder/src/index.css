@@ -1,19 +1,9 @@
 html, body {
   margin: 0;
   padding: 0;
-}
-
-body {
   text-align: center;
 }
 
-/* img {
-  width: 300px;
-  height: 220px;
-  position: absolute;
-  left: 20px;
-  top: 2px;
-} */
 
 nav {
   width: 100%;
@@ -30,6 +20,12 @@ nav .nav-button {
   border-radius: 10px;
   border: none;
   margin: 10px;
+  cursor: pointer;
+}
+
+nav .nav-button:disabled {
+  background-color: rgb(180, 180, 180);
+  color: rgb(193, 42, 90);
 }
 
 nav .logo-container {
@@ -40,7 +36,9 @@ nav .logo-container .logo {
   width: 100%;
 }
 
-
+.home {
+  margin-top: 30vh;
+}
 
 .overlay {
   width: 100vw;
@@ -48,8 +46,8 @@ nav .logo-container .logo {
   position: fixed;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.65) 0%
-    rgba(0, 0, 0, 0), 100%
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0), 100%,
   );
 }
 
@@ -71,3 +69,22 @@ nav .logo-container .logo {
   cursor: pointer;
 }
 
+
+.auth-modal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 360px;
+  height: 600px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 40px;
+}
+
+.auth-modal .close-icon {
+  float: right;
+  cursor: pointer;
+}
