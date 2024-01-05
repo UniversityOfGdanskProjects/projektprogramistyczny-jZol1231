@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700;800&display=swap');
+
+* {
+  font-family: 'Readex Pro', sans-serif;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -67,6 +73,28 @@ nav .logo-container .logo {
   box-shadow: 0 0.5em 0.5em -0.4em #fe3050;
   transform: translateY(-0.25em);
   cursor: pointer;
+}
+
+.secondary-button {
+  color: rgb(121, 119, 119);
+  background: white;
+  font-weight: 500;
+  font-size: 15px;
+  text-transform: uppercase;
+  padding: 12px 30px;
+  margin: 6px;
+  border-radius: 30px;
+  border: solid 2px rgb(121, 119, 119);
+}
+
+.secondary-button:hover {
+  color: rgb(48, 48, 48);
+  border: solid 2px rgb(48, 48, 48);
+  cursor: pointer;
+}
+
+.secondary-button:active {
+  transform: translateY(0.15em);
 }
 
 
