@@ -42,8 +42,8 @@ export default function AuthModal({ setShowModal, isSignUp }) {
             <p>By clicking Log In, you agree to our terms. Learn how we process your data in our Privacy Policy.</p>
             <form onSubmit={formik.handleSubmit}>
                 <label name='email'>Email</label>
-                {formik.errors.email && <div className='error'>{formik.errors.email}</div>}
-                <input 
+                {/* {formik.errors.email && <div className='error'>{formik.errors.email}</div>} */}
+                <input style={formik.errors.email ? { border: '2px solid red'} : null}
                     type='email'
                     name='email'
                     id='email'
@@ -54,8 +54,8 @@ export default function AuthModal({ setShowModal, isSignUp }) {
                 />
                 <br />
                 <label name='password'>Password</label>
-                {formik.errors.password && <div className='error'>{formik.errors.password}</div>}
-                <input 
+                {/* {formik.errors.password && <div className='error'>{formik.errors.password}</div>} */}
+                <input style={formik.errors.password || formik.errors.passwordConfirm ? { border: '2px solid red'} : null}
                     type='password'
                     name='password'
                     id='password'
@@ -66,8 +66,8 @@ export default function AuthModal({ setShowModal, isSignUp }) {
                 /><br />
                 {isSignUp && <>
                     <label name='passwordConfirm'>Confirm your password</label>
-                    {formik.errors.passwordConfirm && <div className='error'>{formik.errors.passwordConfirm}</div>}                    
-                    <input 
+                    {/* {formik.errors.passwordConfirm && <div className='error'>{formik.errors.passwordConfirm}</div>}                     */}
+                    <input style={formik.errors.passwordConfirm ? { border: '2px solid red'} : null}
                         type='password'
                         name='passwordConfirm'
                         id='passwordConfirm'

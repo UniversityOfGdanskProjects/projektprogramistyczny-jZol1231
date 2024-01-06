@@ -26,7 +26,7 @@ export default function Home() {
             setSignUp={setSignUp}
         />
         <div className='home'>
-            <h1>Swipe right</h1>
+            <h1 className='primary-title'>Swipe right</h1>
             <button className='primary-button' 
                     onClick={handleClick}>
                 {authenticated ? 'Signout' : 'Create an account'}

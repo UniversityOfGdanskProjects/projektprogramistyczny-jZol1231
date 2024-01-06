@@ -12,7 +12,7 @@ export default function Nav({ minimal, authToken, setShowModal, showModal, setSi
     return (
         <nav>
             <div className='logo-container'>
-                <img className='logo' src={minimal ? whiteLogo: colorLogo} alt='logo'/>
+                <img className='logo' src={minimal ? colorLogo: whiteLogo} alt='logo'/>
             </div>
             {!authToken && !minimal && <button className='nav-button' onClick={handleClick} disabled={showModal}>Log in</button>}
         </nav>
