@@ -8,6 +8,7 @@ html, body {
   margin: 0;
   padding: 0;
   text-align: center;
+  overflow: hidden;
 }
 
 h2 {
@@ -146,11 +147,6 @@ nav .logo-container .logo {
 }
 
 
-/* .auth-modal .error {
-  border-color: red;
-} */
-
-
 .onboarding form  {
   display: flex;
   justify-content: center;
@@ -227,7 +223,6 @@ nav .logo-container .logo {
 .dashboard {
   display: flex;
   justify-content: space-between;
-  flex-direction: row-reverse;
 }
 
 .dashboard .swipe-container {
@@ -264,4 +259,71 @@ nav .logo-container .logo {
   position: absolute;
   bottom: 0;
   padding: 10px;
+}
+
+
+.chat-container {
+  background-color: white;
+  box-shadow: 0px 0px 0px 2px lightgrey;
+  width: 30%;
+  text-align: left;
+  z-index: 1;
+}
+
+.chat-container-header {
+  background: linear-gradient(45deg, #fe3072, #ff5940);
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-container .option {
+  border: none;
+  background-color: rgb(255, 255, 255);
+  border-bottom: solid 4px rgb(243, 33, 33);
+  font-size: 20px;
+  margin: 2px;
+  padding: 10px;
+}
+
+.chat-container .option:disabled {
+  border-bottom: solid 4px lightgrey;
+}
+
+.chat-container .profile,
+.chat-container .log-out-icon {
+  display: flex;
+  align-items: center; 
+  padding: 20px;
+  color: white;
+}
+
+.log-out-icon {
+  font-size:x-large;
+}
+
+.img-container {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.img-container img {
+  width: 100%;
+}
+
+
+.chat-display {
+  padding: 20px;
+  height: 60vh;
+  overflow-y: auto;
+}
+
+.chat-input {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
