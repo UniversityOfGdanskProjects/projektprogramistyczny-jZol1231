@@ -149,3 +149,76 @@ nav .logo-container .logo {
 /* .auth-modal .error {
   border-color: red;
 } */
+
+
+.onboarding form  {
+  display: flex;
+  justify-content: center;
+}
+
+
+.onboarding form section {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 35%;
+  text-align: start;
+}
+
+.onboarding form input {
+  padding: 15px 30px;
+  margin: 10px 0;
+  font-size: 15px;
+  border: 2px solid lightgrey;
+  border-radius: 10px; 
+}
+
+.onboarding form label {
+  margin: 10px 0;
+}
+
+.onboarding form input::-webkit-outer-spin-button,
+.onboarding form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.onboarding form .multiple-input-container {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.onboarding form .multiple-input-container input {
+  margin-right: 10px;
+}
+
+.onboarding form .multiple-input-container label {
+  padding: 10px;
+  border: solid 2px rgb(144, 144, 144);
+  border-radius: 10px;
+  transition: all 0.3s;
+  margin-right: 10px;
+}
+
+.onboarding form input[type='radio'] {
+  display: none;
+}
+
+.onboarding form input[type='number'] {
+  width: 30%;
+}
+
+.onboarding form input[type='radio']:checked + label {
+  border: solid 2px rgb(200, 67, 109);
+}
+
+.onboarding section .photo-container {
+  display: flex;
+  justify-content: center;
+}
+
+.onboarding section .photo-container img {
+  width: 350px;
+  height: auto;
+}

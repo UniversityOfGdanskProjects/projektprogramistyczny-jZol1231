@@ -9,7 +9,13 @@ export default function Onboarding() {
             dob_day: undefined,
             dob_month: undefined,
             dob_year: undefined,
-            gender_identity: null,
+            gender_identity: undefined,
+            show_gender: false,
+            gender_interest: undefined,
+            email: '',
+            url: '',
+            about: '',
+            matches: []
         },
         onSubmit: (values) => {
             console.log(values);
@@ -74,7 +80,6 @@ export default function Onboarding() {
                     </div>
                     <label>Gender</label>
                     <div className='multiple-input-container'>
-                        <label htmlFor='man-gender-identity'>Man</label>
                         <input
                             id='man-gender-identity'
                             type='radio'
@@ -83,7 +88,8 @@ export default function Onboarding() {
                             onChange={formik.handleChange}
                             checked={formik.values.gender_identity === 'man'}
                         />
-                        <label htmlFor='woman-gender-identity'>Woman</label>
+                        <label htmlFor='man-gender-identity'>Man</label>
+
                         <input
                             id='woman-gender-identity'
                             type='radio'
@@ -92,6 +98,17 @@ export default function Onboarding() {
                             onChange={formik.handleChange}
                             checked={formik.values.gender_identity === 'woman'}
                         />
+                        <label htmlFor='woman-gender-identity'>Woman</label>
+
+                        <input
+                            id='more-gender-identity'
+                            type='radio'
+                            name='gender_identity'
+                            value='more'
+                            onChange={formik.handleChange}
+                            checked={formik.values.gender_identity === 'more'}
+                        />
+                        <label htmlFor='more-gender-identity'>More</label>
                     </div>
 
                     <label htmlFor='show-gender'>Show gender on my profile</label>
@@ -99,135 +116,76 @@ export default function Onboarding() {
                             id='show-gender'
                             type='checkbox'
                             name='show_gender'
+                            value={false}
                             onChange={formik.handleChange}
-                            checked={false}
+                            checked={formik.values.show_gender === true}
+                    />
+
+                    <label>Show me</label>
+                    <div className='multiple-input-container'>
+                        <input
+                            id='man-gender-interest'
+                            type='radio'
+                            name='gender_interest'
+                            value='man'
+                            onChange={formik.handleChange}
+                            checked={formik.values.gender_interest === 'man'}
                         />
+                        <label htmlFor='man-gender-interest'>Man</label>
+
+                        <input
+                            id='woman-gender-interest'
+                            type='radio'
+                            name='gender_interest'
+                            value='woman'
+                            onChange={formik.handleChange}
+                            checked={formik.values.gender_interest === 'woman'}
+                        />
+                        <label htmlFor='woman-gender-interest'>Woman</label>                        
+                        
+                        <input
+                            id='everyone-gender-interest'
+                            type='radio'
+                            name='gender_interest'
+                            value='everyone'
+                            onChange={formik.handleChange}
+                            checked={formik.values.gender_interest === 'everyone'}
+                        />
+                        <label htmlFor='everyone-gender-interest'>Everyone</label>
+                    </div>
+
+                    <label htmlFor='about'>About me</label>
+                    <input 
+                        id='about'
+                        type='text'
+                        name='about'
+                        placeholder='I like long walks'
+                        values={formik.values.about}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                    />
+
+                    <button type='submit' className='secondary-button'>Submit</button>
 
                 </section>
-                <button type='submit' className='secondary-button'>Submit</button>
+
+                <section>
+
+                    <label htmlFor='photo'>Profile Photo</label>
+                        <input 
+                            type='url'
+                            name='url'
+                            id='url'
+                            onChange={formik.handleChange}
+                        />
+                        <div className='photo-container'>
+                            <img src={formik.values.url} alt='your profile pic'/>
+                        </div>
+
+                </section>
+
             </form>
           </div>
         </>
     );
 }
-
-
-// export default function Onboarding() {
-
-//     const formik = useFormik({
-//         initialValues: {
-//             firstName: '',
-//             dob_day: undefined,
-//             dob_month: undefined,
-//             dob_year: undefined,
-//             gender_identity: null,
-//         },
-//         onSubmit: (values) => {
-//             console.log(values);
-//         }
-//     });
-
-//     return (
-//         <>
-//           <Nav 
-//             minimal={true}
-//             authToken={false}
-//             setShowModal={() => {}}
-//             showModal={false}
-//             setSignUp={false}
-//           />  
-//           <div className='onboarding'>
-//             <h2>CREATE ACCOUNT</h2>
-
-//             <form onSubmit={formik.handleSubmit}>
-//                 <section>
-//                     <label htmlFor='first_name' name='firstName'>First Name</label>
-//                     <input 
-//                         id='first_name'
-//                         type='text'
-//                         name='firstName'
-//                         placeholder='First Name'
-//                         onBlur={formik.handleBlur}
-//                         onChange={formik.handleChange}
-//                         value={formik.values.firstName}
-//                     />
-//                     <label htmlFor='dob_day'>Birthday</label> 
-//                     <div className='multiple-input-container'>                   
-//                         <input 
-//                             id='dob_day'
-//                             type='number'
-//                             name='dob_day'
-//                             placeholder='DD'
-//                             required={true}
-//                             onBlur={formik.handleBlur}
-//                             value={formik.values.dob_day}
-//                             onChange={formik.handleChange}
-//                         />                  
-//                         <input 
-//                             id='dob_month'
-//                             type='number'
-//                             name='dob_month'
-//                             placeholder='MM'
-//                             onBlur={formik.handleBlur}
-//                             value={formik.values.dob_month}
-//                             onChange={formik.handleChange}
-//                         />                   
-//                         <input 
-//                             id='dob_year'
-//                             type='number'
-//                             name='dob_year'
-//                             placeholder='YYYY'
-//                             onBlur={formik.handleBlur}
-//                             value={formik.values.dob_year}
-//                             onChange={formik.handleChange}
-//                         />
-//                     </div>
-//                     <label>Gender</label>
-//                     <div className='multiple-input-container'>
-//                             <label htmlFor='man-gender_identity-identity'>Man</label>
-//                             <input
-//                                 id='man-gender_identity-identity'
-//                                 type='radio'
-//                                 name='gender_identity'
-//                                 value='man'
-//                                 onChange={formik.handleChange}
-//                                 checked={formik.values.gender_identity === 'man'}
-//                             />
-//                             <label htmlFor='woman-gender_identity-identity'>Woman</label>
-//                             <input
-//                                 id='woman-gender_identity-identity'
-//                                 type='radio'
-//                                 name='gender_identity'
-//                                 value='woman'
-//                                 onChange={formik.handleChange}
-//                                 checked={formik.values.gender_identity === 'woman'}
-//                             />
-//                         </div>
-//                     {/* <div className='multiple-input-container'>
-//                         <label htmlFor='man-gender_identity-identity'>Man</label>
-//                         <input 
-//                             id='man-gender_identity-identity'
-//                             type='radio'
-//                             name='gender_identity'
-//                             value={formik.values.gender_identity}
-//                             onChange={formik.handleChange}
-//                             checked={false}
-//                         />
-//                         <label htmlFor='woman-gender_identity-identity'>Woman</label>    
-//                         <input 
-//                             id='woman-gender_identity-identity'
-//                             type='radio'
-//                             name='gender_identity'
-//                             value={formik.values.gender_identity}
-//                             onChange={formik.handleChange}
-//                             checked={false}
-//                         />                     
-//                     </div> */}
-//                 </section>
-//                 <button type='submit' className='secondary-button'>Submit</button>
-//             </form>
-
-//           </div>
-//         </>
-//     )
-// }
