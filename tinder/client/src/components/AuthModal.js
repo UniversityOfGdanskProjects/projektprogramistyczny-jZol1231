@@ -1,7 +1,12 @@
 import { useFormik } from 'formik';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+import { useState } from 'react';
 
 export default function AuthModal({ setShowModal, isSignUp }) {
+
+    const [cookie, setCookie, removeCookie] = useCookies(['user']);
 
     const validate = (values) => {
         const errors = {};
@@ -9,18 +14,18 @@ export default function AuthModal({ setShowModal, isSignUp }) {
             errors.email = 'Required!';
         } else if (!values.password) {
             errors.password = 'Required!';
-        } else if (!values.passwordConfirm) {
-            errors.passwordConfirm = 'Required!';
-        } else if (values.password !== values.passwordConfirm) {
-            errors.passwordConfirm = 'Different password!';
+        }
+        if (isSignUp) {
+            if (!values.passwordConfirm) {
+                errors.passwordConfirm = 'Required!';
+            } else if (values.password !== values.passwordConfirm) {
+                errors.passwordConfirm = 'Different password!';
+            }
         }
         return errors;
     }
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const response = await axios.post('http://localhost:8000/signup', { formik.values.email, password });
-    // }
+    const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
@@ -32,22 +37,28 @@ export default function AuthModal({ setShowModal, isSignUp }) {
         validateOnChange: false,
         validateOnBlur: false,
         onSubmit: async (values, actions) => {
-            // e.preventDefault();
+
             const { email, password } = values;
+            console.log(email + password);
 
             try {
-                const response = await axios.post('http://localhost:8000/signup', { email, password });
+                const response = await axios.post(`http://localhost:8000/${isSignUp ? 'signup' : 'login'}`, { email, password });
 
-                const success = response.status == 201;
-                if (success) {
-                    
+                setCookie('Email', response.data.email);
+                setCookie('UserId', response.data.userId);
+                setCookie('AuthToken', response.data.token);
+
+                const success = response.status === 201;
+
+                if (success && isSignUp) {
+                    navigate('/onboarding');
+                } else if (success && !isSignUp) {
+                    navigate('/dashboard');
                 }
 
-            } catch {
-                console.log('error');
+            } catch (error) {
+                console.log(error);
             }
-
-            
         }
     });
 
