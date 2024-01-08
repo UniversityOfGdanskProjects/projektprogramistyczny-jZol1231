@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 export default function AuthModal({ setShowModal, isSignUp }) {
 
-    const [cookie, setCookie, removeCookie] = useCookies(['user']);
+    const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
     const validate = (values) => {
         const errors = {};
@@ -39,12 +39,12 @@ export default function AuthModal({ setShowModal, isSignUp }) {
         onSubmit: async (values, actions) => {
 
             const { email, password } = values;
-            console.log(email + password);
+            // console.log(email + password);
 
             try {
                 const response = await axios.post(`http://localhost:8000/${isSignUp ? 'signup' : 'login'}`, { email, password });
 
-                setCookie('Email', response.data.email);
+                // setCookie('Email', response.data.email);
                 setCookie('UserId', response.data.userId);
                 setCookie('AuthToken', response.data.token);
 

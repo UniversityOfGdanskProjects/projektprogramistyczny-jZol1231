@@ -1,10 +1,19 @@
 import { useState } from 'react';
 import Nav from '../components/Nav';
 import { useFormik } from 'formik';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Onboarding() {
+
+    const [cookies, setCookie, removeCookie] = useCookies(['user']);
+
+    const navigate = useNavigate();
+
     const formik = useFormik({
         initialValues: {
+            user_id: cookies.UserId,
             first_name: '',
             dob_day: undefined,
             dob_month: undefined,
@@ -12,13 +21,30 @@ export default function Onboarding() {
             gender_identity: undefined,
             show_gender: false,
             gender_interest: undefined,
-            email: '',
+            // email: cookies.email,
             url: '',
             about: '',
             matches: []
         },
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
+
             console.log(values);
+            
+            try {
+                const response = await axios.put('http://localhost:8000/user', { values } )
+
+                console.log(response);
+
+                const success = response.status === 200;
+
+                console.log(success);
+                
+                if (success) {
+                    navigate('/dashboard');
+                }
+            } catch (error) {
+                console.log(error);
+            }
             
         },
     });
@@ -179,7 +205,7 @@ export default function Onboarding() {
                             onChange={formik.handleChange}
                         />
                         <div className='photo-container'>
-                            <img src={formik.values.url} alt='your profile pic'/>
+                            {formik.values.url && <img src={formik.values.url} alt='your profile pic'/>}
                         </div>
 
                 </section>

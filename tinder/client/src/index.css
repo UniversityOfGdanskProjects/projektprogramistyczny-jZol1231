@@ -8,7 +8,7 @@ html, body {
   margin: 0;
   padding: 0;
   text-align: center;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 h2 {
@@ -146,6 +146,17 @@ nav .logo-container .logo {
   padding: 0;
 }
 
+.onboarding {
+  border-top: solid 1px rgb(213, 213, 213);
+  margin: 0;
+  padding: 0;
+}
+
+.onboarding h2 {
+  margin: 0;
+  padding: 0;
+  padding-top: 10px;
+}
 
 .onboarding form  {
   display: flex;
