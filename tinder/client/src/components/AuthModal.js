@@ -56,6 +56,8 @@ export default function AuthModal({ setShowModal, isSignUp }) {
                     navigate('/dashboard');
                 }
 
+                window.location.reload()
+
             } catch (error) {
                 console.log(error);
             }

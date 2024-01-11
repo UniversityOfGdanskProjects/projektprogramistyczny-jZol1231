@@ -1,4 +1,4 @@
-import { useState } from 'react';
+
 import Nav from '../components/Nav';
 import { useFormik } from 'formik';
 import { useCookies } from 'react-cookie';
@@ -15,38 +15,52 @@ export default function Onboarding() {
         initialValues: {
             user_id: cookies.UserId,
             first_name: '',
-            dob_day: undefined,
-            dob_month: undefined,
-            dob_year: undefined,
-            gender_identity: undefined,
+            dob_day: '',
+            dob_month: '',
+            dob_year: '',
+            gender_identity: 'man',
             show_gender: false,
-            gender_interest: undefined,
+            gender_interest: 'woman',
             // email: cookies.email,
             url: '',
             about: '',
             matches: []
         },
-        onSubmit: async (values) => {
-
-            console.log(values);
+        // onSubmit: async (values) => {
             
-            try {
-                const response = await axios.put('http://localhost:8000/user', { values } )
+        //     // values.preventDefault();
 
-                console.log(response);
+        //     const data = values;
+            
+        //     try {
+        //         const response = await axios.put('http://localhost:8000/user', { data })
 
-                const success = response.status === 200;
+        //         console.log(response);
 
-                console.log(success);
+        //         const success = response.status === 200;
+
+        //         console.log(success);
                 
-                if (success) {
+        //         if (success) {
+        //             navigate('/dashboard');
+        //         }
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+            
+        // },
+        onSubmit: async (values) => {
+            return await axios.put('http://localhost:8000/user', { values })
+                    .then(response => {
+                console.log(response);
+                if (response.status === 200) {
                     navigate('/dashboard');
                 }
-            } catch (error) {
-                console.log(error);
-            }
-            
-        },
+            })
+                .catch(error => {
+                    console.log(error);
+                });
+},
     });
 
     return (
@@ -202,6 +216,7 @@ export default function Onboarding() {
                             type='url'
                             name='url'
                             id='url'
+                            values={formik.values.url}
                             onChange={formik.handleChange}
                         />
                         <div className='photo-container'>

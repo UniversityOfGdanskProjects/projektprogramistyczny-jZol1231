@@ -46,7 +46,7 @@ app.post('/signup', async (req, res) => {
                 email: normalizedEmail,
                 hashed_password: hashedPassword
             }
-            const insertedUser = users.insertOne(data);
+            const insertedUser = await users.insertOne(data);
 
             const token = jwt.sign({ user: insertedUser, email: normalizedEmail }, privateKey, {
                 expiresIn: 60 * 24,
@@ -58,6 +58,8 @@ app.post('/signup', async (req, res) => {
         }
     } catch (error) {
         console.log('error: ' + error);
+    } finally {
+        await client.close();
     }
 
 })
@@ -84,32 +86,59 @@ app.post('/login', async (req, res) => {
             // res.status(201).json({ token, userId: user.userId, email})
         }
         res.status(400).send('Invalid credentials!');
-    } catch (error) {
-        console.log(error);
-    } 
-})
-
-
-app.get('/user', async (req, res) => {
-    const client = new MongoClient(uri);
-    const userId = req.query.userId;
-
-    try {
-        await client.connect();
-        const database = client.db('app-data');
-
-        const query = { user_id: userId };
-        res.send(user)
-
-        const user = await client.findOne(query);
 
     } catch (error) {
         console.log(error);
-    } finally {
+    }  finally {
         await client.close();
     }
-
 })
+
+app.get('/user', async (req, res) => {
+    const client = new MongoClient(uri)
+    const userId = req.query.userId
+
+    try {
+        await client.connect()
+        const database = client.db('app-data')
+        const users = database.collection('users')
+
+        const query = {user_id: userId}
+        const user = await users.findOne(query)
+        res.send(user)
+
+    } finally {
+        await client.close()
+    }
+})
+
+
+
+// app.get('/user', async (req, res) => {
+//     const client = new MongoClient(uri);
+//     const userId = req.query.userId;
+//     console.log(req);
+//     console.log(userId);
+
+//     try {
+//         await client.connect();
+//         const database = client.db('app-data');
+//         const users = database.collection('users')
+
+//         const query = { user_id: userId };
+//         const user = await users.findOne(query);
+
+//         // console.log(user);
+
+//         res.send(user);
+
+//     } catch (error) {
+//         console.log(error);
+//     } finally {
+//         await client.close();
+//     }
+
+// })
 
 
 app.get('/users', async (req, res) => {
@@ -127,17 +156,18 @@ app.get('/users', async (req, res) => {
 })
 
 app.put('/user', async (req, res) => {
-    const client = new MongoClient(uri);
+    const client = new MongoClient(uri)
     const formData = req.body.values;
+    // const formData = req.body.formData;
 
     console.log(formData);
 
     try {
-        await client.connect();
-        const database = client.db('app-data');
-        const users = database.collection('users');
+        await client.connect()
+        const database = client.db('app-data')
+        const users = database.collection('users')
 
-        const query = { user_id: formData.user_id };
+        const query = {user_id: formData.user_id}
 
         const updateDocument = {
             $set: {
@@ -153,16 +183,19 @@ app.put('/user', async (req, res) => {
                 matches: formData.matches
             },
         }
-        const insertedUser = await users.updateOne(query, updateDocument);
-        res.send(insertedUser);
 
-    } catch (error) {
-        console.log(error);
+        // console.log(updateDocument);
+
+        const insertedUser = await users.updateOne(query, updateDocument)
+
+        // console.log(updateDocument);
+        // console.log(insertedUser);
+
+        res.json(updateDocument);
 
     } finally {
-        client.close();
+        await client.close()
     }
 })
 
 app.listen(PORT, console.log(`Server running on port: ${PORT}`))
-
