@@ -20,7 +20,7 @@ export default function Home() {
             window.location.reload()
             return
         }
-        console.log('Clicked!');
+
         setShowModal(true);
         setSignUp(true);
     };

@@ -1,16 +1,16 @@
-import TinderCard from 'react-tinder-card'
-import {useEffect, useState} from 'react'
-import ChatContainer from '../components/ChatContainer'
-import {useCookies} from 'react-cookie'
-import axios from 'axios'
+import TinderCard from 'react-tinder-card';
+import {useEffect, useState} from 'react';
+import ChatContainer from '../components/ChatContainer';
+import {useCookies} from 'react-cookie';
+import axios from 'axios';
 
-const Dashboard = () => {
-    const [user, setUser] = useState(null)
+export default function Dashboard() {
+    const [user, setUser] = useState(null);
     const [genderedUsers, setGenderedUsers] = useState(null);
-    const [lastDirection, setLastDirection] = useState()
-    const [cookies, setCookie, removeCookie] = useCookies(['user'])
+    const [lastDirection, setLastDirection] = useState();
+    const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
-    const userId = cookies.UserId
+    const userId = cookies.UserId;
 
 
     const getUser = async () => {
@@ -19,9 +19,9 @@ const Dashboard = () => {
                 params: {userId}
             })
             console.log(response.data);
-            setUser(response.data)
+            setUser(response.data);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 
@@ -37,18 +37,41 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        getUser()
+        getUser();
+        getGenderedUsers();
+    }, [user, genderedUsers])
 
-    }, [])
 
+    const updateMatches = async (matchedUserId) => {
+        try {
+            await axios.put('http://localhost:8000/addmatch', {
+                userId,
+                matchedUserId
+            })
+            getUser()
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const matchedUserIds = user?.matches.map(({ user_id }) => user_id).concat(userId); // without our userId
+
+    const filteredGenderedUsers = genderedUsers?.filter(
+        genderedUser => !matchedUserIds.includes(genderedUser.user_id)
+    )
 
 
     const swiped = (direction, swipedUserId) => {
-        setLastDirection(direction)
+
+        if (direction === 'right') {
+            updateMatches(swipedUserId);
+        }
+
+        setLastDirection(direction);
     }
 
     const outOfFrame = (name) => {
-        console.log(name + ' left the screen!')
+        console.log(name + ' left the screen!');
     }
 
 
@@ -75,6 +98,7 @@ const Dashboard = () => {
         }
     ]
 
+    console.log(genderedUsers);
 
 
     return (
@@ -85,16 +109,16 @@ const Dashboard = () => {
                 <div className='swipe-container'>
 
                     <div className='card-container'>
-                        {characters.map((character) =>
+                        {genderedUsers.map((genderedUser) =>
                             <TinderCard 
                                 className='swipe' 
-                                key={character.name} 
-                                onSwipe={(dir) => swiped(dir, character.name)} 
-                                onCardLeftScreen={() => outOfFrame(character.name)}>
+                                key={genderedUser.user_id} 
+                                onSwipe={(dir) => swiped(dir, genderedUser.user_id)} 
+                                onCardLeftScreen={() => outOfFrame(genderedUser.first_name)}>
                             <div 
-                                style={{ backgroundImage: 'url(' + character.url + ')' }} 
+                                style={{ backgroundImage: 'url(' + genderedUser.url + ')' }} 
                                 className='card'>
-                                    <h3>{character.name}</h3>
+                                    <h3>{genderedUser.first_name}</h3>
                             </div>
 
                             </TinderCard>
@@ -110,4 +134,3 @@ const Dashboard = () => {
         </>
     )
 }
-export default Dashboard

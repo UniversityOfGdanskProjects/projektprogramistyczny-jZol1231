@@ -21,34 +21,10 @@ export default function Onboarding() {
             gender_identity: 'man',
             show_gender: false,
             gender_interest: 'woman',
-            // email: cookies.email,
             url: '',
             about: '',
             matches: []
         },
-        // onSubmit: async (values) => {
-            
-        //     // values.preventDefault();
-
-        //     const data = values;
-            
-        //     try {
-        //         const response = await axios.put('http://localhost:8000/user', { data })
-
-        //         console.log(response);
-
-        //         const success = response.status === 200;
-
-        //         console.log(success);
-                
-        //         if (success) {
-        //             navigate('/dashboard');
-        //         }
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-            
-        // },
         onSubmit: async (values) => {
             return await axios.put('http://localhost:8000/user', { values })
                     .then(response => {
