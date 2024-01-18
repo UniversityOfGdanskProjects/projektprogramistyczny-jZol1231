@@ -6,13 +6,19 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const { MongoClient } = require('mongodb');
 const PORT = 8000;
-const uri = 'mongodb+srv://tinder-project:passwordmy123@cluster0.cdtoktt.mongodb.net/Cluster0?retryWrites=true&w=majority';
+
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 const privateKey = 'myKey';
+
+
+const ipAdress = "127.0.0.1";
+const port = "27017";
+const databaseName = "tinder";
+const uri = `mongodb://${ipAdress}:${port}/${databaseName}`;
 
 
 app.get('/', (req, res) => {
@@ -28,7 +34,7 @@ app.post('/signup', async (req, res) => {
 
     try {
         await client.connect()
-        const database = client.db('app-data');
+        const database = client.db('tinder');
         const users = database.collection('users');
 
         const existingUser = await users.findOne({ email: email });
@@ -67,7 +73,7 @@ app.post('/login', async (req, res) => {
 
     try {
         await client.connect();
-        const database = client.db('app-data');
+        const database = client.db('tinder');
         const users = database.collection('users');
 
         const user = await users.findOne({ email: email });
@@ -96,7 +102,7 @@ app.get('/user', async (req, res) => {
 
     try {
         await client.connect()
-        const database = client.db('app-data')
+        const database = client.db('tinder')
         const users = database.collection('users')
 
         const query = {user_id: userId}
@@ -116,7 +122,7 @@ app.get('/users', async (req, res) => {
 
     try {
         await client.connect();
-        const database = client.db('app-data');
+        const database = client.db('tinder');
         const users = database.collection('users');
 
         const pipeline = [
@@ -145,11 +151,13 @@ app.get('/gendered-users', async (req, res) => {
 
     try {
         await client.connect();
-        const database = client.db('app-data');
+        const database = client.db('tinder');
         const users = database.collection('users');
         const query = { gender_identity: gender };
 
         const foundUsers = await users.find(query).toArray()
+
+        console.log(foundUsers);
 
         res.send(foundUsers);
 
@@ -166,7 +174,7 @@ app.put('/user', async (req, res) => {
 
     try {
         await client.connect()
-        const database = client.db('app-data')
+        const database = client.db('tinder')
         const users = database.collection('users')
 
         const query = {user_id: formData.user_id}
@@ -201,7 +209,7 @@ app.put('/addmatch', async (req, res) => {
 
     try {
         await client.connect();
-        const database = client.db('app-data');
+        const database = client.db('tinder');
         const users = database.collection('users');
 
         const query = { user_id: userId };
