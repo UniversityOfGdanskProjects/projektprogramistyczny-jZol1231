@@ -1,0 +1,25 @@
+
+.main {
+    max-width: 200px;
+    background-color: lightgrey;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu {
+    text-align: center;
+    padding: 1em;
+}
+
+/* .main ul {
+    padding: 1em;
+} */
+
+.main ul li {
+    margin: 0.5em 0;
+    padding: 1em;
+    border: 1px solid orange;
+    background-color: orange;
+}
+

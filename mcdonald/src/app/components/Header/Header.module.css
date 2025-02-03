@@ -1,0 +1,11 @@
+
+.bar {
+    display: flex;
+    background-color: rgb(255, 155, 16);
+    min-height: 150px;
+    justify-content: center;
+}
+
+.logo {
+    padding: 1em 0;
+}
