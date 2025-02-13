@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { data } from '../../data/synthesizers';
+import { useState } from 'react';
 
-export default function Products({ show }) {
+export default function Products({ show, onClickShowPres }) {
+
+    const [showPres, setShowPres] = useState(false);
 
     const products = data;
 
@@ -18,6 +21,11 @@ export default function Products({ show }) {
                         </div>
                     </Link>
                 ))}
+            </div>
+            <div className="flex justify-center mt-10">
+                <button onClick={onClickShowPres} className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition">
+                    ↓ Show More
+                </button>
             </div>
         </section>
     );

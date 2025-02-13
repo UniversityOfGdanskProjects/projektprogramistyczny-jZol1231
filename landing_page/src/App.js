@@ -10,10 +10,12 @@ import Products from './components/products/Products';
 import ProductPage from './components/productPage/ProductPage';
 import { CartProvider } from './context/CartContext'; 
 import CartPage from './components/cart/Cart';
+import Presentation from './components/presentation/Presentation';
 
 function App() {
 
   const [showProducts, setShowProducts] = useState(false);
+  const [showPres, setShowPres] = useState(false);
 
   const handleExploreClick = () => {
       setShowProducts(true);
@@ -21,6 +23,13 @@ function App() {
           document.getElementById("products").scrollIntoView({ behavior: "smooth" });
       }, 100);
   };
+
+  const handleShowPres = () => {
+    setShowPres(prev => !prev);
+    setTimeout(() => {
+          document.getElementById("presentation").scrollIntoView({ behavior: "smooth" });
+      }, 100);
+  }
 
 
   return (
@@ -32,7 +41,8 @@ function App() {
             <Routes>
               <Route path='/' element={<>
                 <Home onExploreClick={ handleExploreClick } />
-                {showProducts && <Products show={ showProducts } />}
+                {showProducts && <Products show={ showProducts } onClickShowPres={handleShowPres} />}
+                {showPres && <Presentation />}
                 </>
               }/>
               <Route path='/product/:id' element={<ProductPage />} />

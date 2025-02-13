@@ -8,6 +8,7 @@ export default function Home({ onExploreClick }) {
             <p className="mt-2 text-gray-600">Your all-in-one solution for great experiences.</p>
             <Navigation />
             <Hero onExploreClick={onExploreClick} />
+
         </section>
     )
 }
