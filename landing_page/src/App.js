@@ -9,6 +9,7 @@ import Home from './components/home/Home';
 import Products from './components/products/Products';
 import ProductPage from './components/productPage/ProductPage';
 import { CartProvider } from './context/CartContext'; 
+import CartPage from './components/cart/Cart';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
               <Route path='/product/:id' element={<ProductPage />} />
               <Route path='/about' element={<About />} />
               <Route path='/contact' element={<Contact />} />
+              <Route path="/cart" element={<CartPage />} />
             </Routes>
           </main>
         </div>
