@@ -6,15 +6,31 @@ import Header from './components/header/Header';
 import About from './components/about/About';
 import Contact from './components/contact/Contact';
 import Home from './components/home/Home';
+import Products from './components/products/Products';
 
 function App() {
+
+  const [showProducts, setShowProducts] = useState(false);
+
+  const handleExploreClick = () => {
+      setShowProducts(true);
+      setTimeout(() => {
+          document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+      }, 100);
+  };
+
+
   return (
     <Router>
       <div>
         <Header />
         <main>
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<>
+              <Home onExploreClick={ handleExploreClick } />
+              {showProducts && <Products show={ showProducts } />}
+              </>
+            }/>
             <Route path='/about' element={<About />} />
             <Route path='/contact' element={<Contact />} />
           </Routes>

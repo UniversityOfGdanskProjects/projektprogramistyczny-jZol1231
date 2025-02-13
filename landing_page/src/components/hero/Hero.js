@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function Hero() {
+export default function Hero({ onExploreClick }) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const images = [
         '/images/synth1.webp',
@@ -56,7 +56,9 @@ export default function Hero() {
             </div>
             <h2 className="text-4xl font-bold mt-6">Welcome to Our Platform</h2>
             <p className="mt-4 text-lg">We provide the best solutions for your business growth.</p>
-            <button className="mt-6 px-6 py-3 bg-white text-blue-500 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition">
+            <button
+            onClick={onExploreClick} 
+            className="mt-6 px-6 py-3 bg-white text-blue-500 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition">
                 Get Started
             </button>
         </section>
