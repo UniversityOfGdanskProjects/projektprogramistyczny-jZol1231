@@ -8,6 +8,7 @@ import Contact from './components/contact/Contact';
 import Home from './components/home/Home';
 import Products from './components/products/Products';
 import ProductPage from './components/productPage/ProductPage';
+import { CartProvider } from './context/CartContext'; 
 
 function App() {
 
@@ -22,23 +23,25 @@ function App() {
 
 
   return (
-    <Router>
-      <div>
-        <Header />
-        <main>
-          <Routes>
-            <Route path='/' element={<>
-              <Home onExploreClick={ handleExploreClick } />
-              {showProducts && <Products show={ showProducts } />}
-              </>
-            }/>
-            <Route path='/product/:id' element={<ProductPage />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/contact' element={<Contact />} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
+    <CartProvider>
+      <Router>
+        <div>
+          <Header />
+          <main>
+            <Routes>
+              <Route path='/' element={<>
+                <Home onExploreClick={ handleExploreClick } />
+                {showProducts && <Products show={ showProducts } />}
+                </>
+              }/>
+              <Route path='/product/:id' element={<ProductPage />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/contact' element={<Contact />} />
+            </Routes>
+          </main>
+        </div>
+      </Router>
+    </CartProvider>
   );
 }
 

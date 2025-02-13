@@ -54,8 +54,8 @@ export default function Hero({ onExploreClick }) {
                     </button>
                 </div>
             </div>
-            <h2 className="text-4xl font-bold mt-6">Welcome to Our Platform</h2>
-            <p className="mt-4 text-lg">We provide the best solutions for your business growth.</p>
+            <h2 className="text-4xl font-bold mt-6">Feel the Sound.</h2>
+            <p className="mt-4 text-lg">We provide the best experience in modern music gear.</p>
             <button
             onClick={onExploreClick} 
             className="mt-6 px-6 py-3 bg-white text-blue-500 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition">
