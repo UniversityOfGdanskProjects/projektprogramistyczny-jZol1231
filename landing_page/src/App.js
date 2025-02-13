@@ -7,6 +7,7 @@ import About from './components/about/About';
 import Contact from './components/contact/Contact';
 import Home from './components/home/Home';
 import Products from './components/products/Products';
+import ProductPage from './components/productPage/ProductPage';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
               {showProducts && <Products show={ showProducts } />}
               </>
             }/>
+            <Route path='/product/:id' element={<ProductPage />} />
             <Route path='/about' element={<About />} />
             <Route path='/contact' element={<Contact />} />
           </Routes>
