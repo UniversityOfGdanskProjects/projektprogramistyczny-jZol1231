@@ -24,7 +24,7 @@ export default function Hero() {
     };
 
     return (
-        <section className="bg-blue-500 text-white text-center py-20 px-4 relative">
+        <section className="bg-gradient-to-r from-black via-[#0a1f44] to-black text-white text-center py-20 px-4 relative">
             <div className="w-full max-w-4xl mx-auto overflow-hidden relative">
                 <div className="relative flex items-center justify-center h-64">
                     <button
