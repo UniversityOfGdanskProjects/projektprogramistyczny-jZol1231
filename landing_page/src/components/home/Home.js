@@ -7,7 +7,7 @@ export default function Home({ onExploreClick }) {
             <h1 className="text-2xl font-semibold ">Welcome to the digital revolution!</h1>
             <p className="mt-2 text-gray-600">Your all-in-one solution for great experiences.</p>
             <Navigation />
-            <Hero onExploreClick={onExploreClick} />
+            <Hero onExploreClick={ onExploreClick } />
 
         </section>
     )

@@ -11,7 +11,7 @@ export default function Presentation() {
 
     return (
         <section className="bg-gray-900 text-white py-20 px-4 text-center" id='presentation'>
-            <h2 className="text-4xl font-bold mb-6">About Us</h2>
+            <h2 className="text-4xl font-bold mb-6">Technology at it's best!</h2>
             
             <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center mb-10">
                 <img src={ images[0] } alt="Company" className="w-1/3 rounded-lg shadow-lg mb-4 md:mb-0 md:mr-6" />

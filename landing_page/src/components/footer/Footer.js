@@ -4,11 +4,9 @@ import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
 
-    const footerRef = useRef(null);
-
-    useEffect(() => {
-        console.log("footer done", footerRef.current);
-    }, []);
+    // useEffect(() => {
+    //     console.log("footer done");
+    // }, []);
 
     const footerLinks = useMemo(() => [
         { href: "#", text: "Privacy Policy" },
