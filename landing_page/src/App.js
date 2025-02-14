@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Header from './components/header/Header';
 import About from './components/about/About';
 import Contact from './components/contact/Contact';
@@ -11,6 +11,7 @@ import ProductPage from './components/productPage/ProductPage';
 import { CartProvider } from './context/CartContext'; 
 import CartPage from './components/cart/Cart';
 import Presentation from './components/presentation/Presentation';
+import Footer from './components/footer/Footer';
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
               <Route path="/cart" element={<CartPage />} />
             </Routes>
           </main>
+          <Footer />
         </div>
       </Router>
     </CartProvider>

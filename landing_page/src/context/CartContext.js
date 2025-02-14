@@ -7,6 +7,7 @@ export function CartProvider({ children }) {
 
     const addToCart = (product) => {
         setCart((prevCart) => [...prevCart, product]);
+        alert(`You've successfully added this product to your cart!`);
     };
 
     const removeFromCart = (productId) => {
