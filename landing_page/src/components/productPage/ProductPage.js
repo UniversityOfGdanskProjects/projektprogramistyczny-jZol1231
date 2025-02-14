@@ -35,7 +35,7 @@ export default function ProductPage() {
 
     useEffect(() => {
         const savedComments = localStorage.getItem(`comments-${id}`);
-        if (savedComments) {
+        if (savedComments && savedComments.length !== 0) {
             setComments(JSON.parse(savedComments));
         } else {
             fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)

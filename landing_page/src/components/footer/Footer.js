@@ -1,15 +1,30 @@
-import { Link } from 'react-router-dom';
+import { useRef, useMemo, useEffect } from 'react';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
+
+    const footerRef = useRef(null);
+
+    useEffect(() => {
+        console.log("footer done", footerRef.current);
+    }, []);
+
+    const footerLinks = useMemo(() => [
+        { href: "#", text: "Privacy Policy" },
+        { href: "#", text: "Terms of Service" },
+        { href: "#", text: "Contact" }
+    ], []);
+
     return (
         <footer className="bg-gray-900 text-white py-10 px-4 text-center">
             <p className="text-lg">&copy; 2025 Synth Company. All rights reserved.</p>
             <div className="flex justify-center space-x-6 mt-4">
-                <Link to='#' className="hover:text-blue-400">Privacy Policy</Link>
-                <Link to="#" className="hover:text-blue-400">Terms of Service</Link>
-                <Link to="#" className="hover:text-blue-400">Contact</Link>
+                {footerLinks.map((link, index) => (
+                    <a key={ index } href={ link.href } target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
+                        { link.text }
+                    </a>
+                ))}
             </div>
             
             <div className="flex justify-center space-x-6 mt-6">

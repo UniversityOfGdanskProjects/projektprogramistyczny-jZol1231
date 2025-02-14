@@ -1,21 +1,37 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useReducer } from 'react';
 
 const CartContext = createContext();
 
+function cartReducer(state, action) {
+    switch (action.type) {
+        case 'ADD':
+            return [...state, action.payload];
+        case 'REMOVE':
+            return state.filter(item => item.id !== action.payload);
+        case 'CLEAR':
+            return [];
+        default:
+            return state;
+    }
+}
+
 export function CartProvider({ children }) {
-    const [cart, setCart] = useState([]);
+
+    const [cart, dispatch] = useReducer(cartReducer, []);
 
     const addToCart = (product) => {
-        setCart((prevCart) => [...prevCart, product]);
-        alert(`You've successfully added this product to your cart!`);
+        dispatch({ type: 'ADD', payload: product });
+        alert("You've successfully added product to your cart!");
     };
 
     const removeFromCart = (productId) => {
-        setCart((prevCart) => prevCart.filter(item => item.id !== productId));
+        dispatch({ type: 'REMOVE', payload: productId });
+        alert("Product deleted");
     };
 
     const clearCart = () => {
-        setCart([]);
+        dispatch({ type: 'CLEAR' });
+        alert("Cart cleared");
     };
 
     return (
