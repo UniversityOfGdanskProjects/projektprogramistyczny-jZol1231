@@ -2,8 +2,8 @@
 export default function About() {
     return (
         <section className="p-8 text-center">
-            <h2 className="text-2xl font-semibold">About Us</h2>
-            <p className="mt-2 text-gray-600 p-5">Learn more about our mission and values.</p>
+            <h2 className="text-4xl font-semibold">About Us</h2>
+            <p className="mt-2 text-gray-400 p-5">Learn more about our mission and values.</p>
             <p className="text-lg text-gray-300 max-w-4xl mx-auto">
                 Our company is dedicated to creating high-quality synthesizers that redefine sound production. We are passionate about innovation and strive to provide musicians with cutting-edge technology to inspire creativity.
             </p>
@@ -49,7 +49,7 @@ export default function About() {
                 <iframe
                     title="map"
                     className="w-full max-w-4xl h-80 mx-auto rounded-lg shadow-lg"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2319.993693223595!2d18.573852576589626!3d54.37162909934386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd74fc88d3f6a1%3A0x5a9f62b1e1b09a95!2sUniwersytet%20Gda%C5%84ski!5e0!3m2!1sen!2spl!4v1707800000000!5m2!1sen!2spl"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2322.7836977978527!2d18.571745276966393!3d54.39613547261232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd752f76dddae7%3A0x4d4128c9a5066e47!2sUniwersytet%20Gda%C5%84ski!5e0!3m2!1spl!2spl!4v1739503953344!5m2!1spl!2spl"
                     allowFullScreen=""
                     loading="lazy"
                 ></iframe>

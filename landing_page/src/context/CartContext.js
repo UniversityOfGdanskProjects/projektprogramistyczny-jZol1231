@@ -7,7 +7,11 @@ function cartReducer(state, action) {
         case 'ADD':
             return [...state, action.payload];
         case 'REMOVE':
-            return state.filter(item => item.id !== action.payload);
+            const index = state.findIndex(item => item.id === action.payload);
+            if (index !== -1) {
+                return [...state.slice(0, index), ...state.slice(index + 1)];
+            }
+            return state;
         case 'CLEAR':
             return [];
         default:

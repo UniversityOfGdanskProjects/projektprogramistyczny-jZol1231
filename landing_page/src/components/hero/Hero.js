@@ -58,7 +58,7 @@ export default function Hero({ onExploreClick }) {
             <p className="mt-4 text-lg">We provide the best experience in modern music gear.</p>
             <button
             onClick={ onExploreClick } 
-            className="mt-6 px-6 py-3 bg-white text-blue-500 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition">
+            className="mt-6 px-6 py-3 bg-white text-blue-500 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition hover:translate-y-0.5 ">
                 Explore
             </button>
         </section>
