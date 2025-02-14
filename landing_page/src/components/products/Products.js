@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
 import { data } from '../../data/synthesizers';
-import { useState } from 'react';
 
 export default function Products({ show, onClickShowPres }) {
-
-    const [showPres, setShowPres] = useState(false);
 
     const products = data;
 

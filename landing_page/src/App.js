@@ -25,7 +25,7 @@ function App() {
   };
 
   const handleShowPres = () => {
-    setShowPres(prev => !prev);
+    setShowPres(true);
     setTimeout(() => {
           document.getElementById("presentation").scrollIntoView({ behavior: "smooth" });
       }, 100);
