@@ -36,7 +36,7 @@ export default function Hero({ onExploreClick }) {
                     <div className="relative w-full h-full">
                         {images.map((image, index) => (
                             <div
-                                key={index}
+                                key={ index }
                                 className={`absolute inset-0 bg-cover bg-center h-full w-full transition-all duration-[2000ms] ease-in-out transform ${
                                     index === currentIndex
                                         ? 'opacity-100 scale-100 translate-x-0'
@@ -48,7 +48,7 @@ export default function Hero({ onExploreClick }) {
                     </div>
                     <button
                         className="absolute right-4 bg-white bg-opacity-50 text-black p-2 rounded-full hover:bg-opacity-75 transition z-10"
-                        onClick={nextSlide}
+                        onClick={ nextSlide }
                     >
                         ▶
                     </button>
@@ -57,7 +57,7 @@ export default function Hero({ onExploreClick }) {
             <h2 className="text-4xl font-bold mt-6">Feel the Sound.</h2>
             <p className="mt-4 text-lg">We provide the best experience in modern music gear.</p>
             <button
-            onClick={onExploreClick} 
+            onClick={ onExploreClick } 
             className="mt-6 px-6 py-3 bg-white text-blue-500 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition">
                 Explore
             </button>

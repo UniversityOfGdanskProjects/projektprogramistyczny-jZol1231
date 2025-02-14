@@ -11,7 +11,7 @@ export default function Footer() {
     const footerLinks = useMemo(() => [
         { href: "#", text: "Privacy Policy" },
         { href: "#", text: "Terms of Service" },
-        { href: "#", text: "Contact" }
+        { href: "/contact", text: "Contact" }
     ], []);
 
     return (
@@ -19,7 +19,7 @@ export default function Footer() {
             <p className="text-lg">&copy; 2025 Synth Company. All rights reserved.</p>
             <div className="flex justify-center space-x-6 mt-4">
                 {footerLinks.map((link, index) => (
-                    <a key={ index } href={ link.href } target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
+                    <a key={ index } href={ link.href } className="hover:text-blue-400">
                         { link.text }
                     </a>
                 ))}

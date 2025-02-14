@@ -1,7 +1,9 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { useLayoutEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Header from './components/header/Header';
 import About from './components/about/About';
 import Contact from './components/contact/Contact';
@@ -33,9 +35,27 @@ function App() {
   }
 
 
+  
+
+  function ScrollToTop() {
+    const { pathname } = useLocation();
+    const prevPathname = useRef(pathname);
+
+    useLayoutEffect(() => {
+        if (prevPathname.current !== pathname) {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            prevPathname.current = pathname; 
+        }
+    }, [pathname]);
+
+    return null;
+  }
+
+
   return (
     <CartProvider>
       <Router>
+        <ScrollToTop />
         <div>
           <Header />
           <main>
